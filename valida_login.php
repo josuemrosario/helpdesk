@@ -1,6 +1,6 @@
 <?php
 
-	print_r($_POST);
+	session_start();
 	$usuario_autenticado = false;
 
 	//Usuarios do sistema
@@ -17,7 +17,11 @@
 	}	
 
 	if(!($usuario_autenticado)){
+		$_SESSION['autenticado'] = 'NAO';
 		header('Location: index.php?login=erro');
+	} else{
+
+		$_SESSION['autenticado'] = 'SIM';
 	}
 
 	
