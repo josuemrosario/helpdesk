@@ -20,8 +20,8 @@
 		$_SESSION['autenticado'] = 'NAO';
 		header('Location: index.php?login=erro');
 	} else{
-
 		$_SESSION['autenticado'] = 'SIM';
+		header('Location: home.php');
 	}
 
 	
