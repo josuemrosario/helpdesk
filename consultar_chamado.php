@@ -9,8 +9,21 @@
   //Efetua leitura de todos os registros
   while (!(feof($arquivo))) {
     $registro = fgets($arquivo);
-    $chamados[] = $registro;
+    var_dump($registro);
+    if(($_SESSION['perfil_id'] == 1)){
+      $chamados[] = $registro;
+    }else{
+      if($_SESSION['id'] == strstr($registro, '#', true)){
+        $chamados[] = $registro;
+      }
+    }
+
   }
+
+
+
+
+
   fclose($arquivo)
 
 ?>
@@ -54,9 +67,9 @@
               <? foreach ($chamados as $chamado) { ?>
 
                 <?php
-                  $chamado_dados = explode('#', $chamado)
+                  $chamado_dados = explode('#', $chamado);
 
-                  if(count($chamado_dados<3)){
+                  if(count($chamado_dados)<3){
                     continue;
                   }
 
@@ -65,9 +78,9 @@
 
                 <div class="card mb-3 bg-light">
                   <div class="card-body">
-                    <h5 class="card-title"><?= $chamado_dados[0] ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[1] ?></h6>
-                    <p class="card-text"><?= $chamado_dados[2] ?></p>
+                    <h5 class="card-title"><?= $chamado_dados[1] ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[2] ?></h6>
+                    <p class="card-text"><?= $chamado_dados[3] ?></p>
 
                   </div>
                 </div>
